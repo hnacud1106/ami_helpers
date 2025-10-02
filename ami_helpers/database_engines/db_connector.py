@@ -36,7 +36,7 @@ class BaseConnector:
     def health_check(self) -> bool:
         raise NotImplementedError
 
-class PostgresConnector(BaseConnector):
+class   PostgresConnector(BaseConnector):
     def __init__(self, cfg: DBConfig):
         dsn = cfg.dsn
         sep = '&' if '?' in dsn else '?'
