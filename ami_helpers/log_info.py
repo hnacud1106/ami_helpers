@@ -51,7 +51,6 @@ def setup_logging(level: str = "INFO", logfile: str | None = None) -> None:
 if __name__ == "__main__":
     setup_logging("DEBUG", "app.log")
     logger = logging.getLogger("demo")
-
     logger.debug("Debug message")
     logger.info("Info message")
     logger.warning("Warning message")

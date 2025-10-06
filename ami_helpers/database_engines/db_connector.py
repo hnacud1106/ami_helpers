@@ -14,6 +14,7 @@ import clickhouse_connect
 
 logger = logging.getLogger(__name__)
 
+
 @dataclass(frozen=True)
 class DBConfig:
     dsn: str
@@ -26,6 +27,7 @@ class DBConfig:
     ch_user: Optional[str] = None
     ch_password: Optional[str] = None
 
+
 class BaseConnector:
     def execute(self, sql: str, params: Optional[Dict[str, Any]] = None) -> None:
         raise NotImplementedError
@@ -36,7 +38,8 @@ class BaseConnector:
     def health_check(self) -> bool:
         raise NotImplementedError
 
-class   PostgresConnector(BaseConnector):
+
+class PostgresConnector(BaseConnector):
     def __init__(self, cfg: DBConfig):
         dsn = cfg.dsn
         sep = '&' if '?' in dsn else '?'
@@ -88,6 +91,7 @@ class   PostgresConnector(BaseConnector):
         except Exception as e:
             logger.warning("Postgres health check failed: %s", e)
             return False
+
 
 class ClickHouseConnector(BaseConnector):
     def __init__(self, cfg: DBConfig):
@@ -142,6 +146,7 @@ class ClickHouseConnector(BaseConnector):
         except Exception as e:
             logger.warning("ClickHouse health check failed: %s", e)
             return False
+
 
 def create_connector(cfg: DBConfig) -> BaseConnector:
     low = cfg.dsn.lower()
