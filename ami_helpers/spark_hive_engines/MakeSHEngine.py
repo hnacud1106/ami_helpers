@@ -3,7 +3,7 @@ from typing import Literal, Dict, Any, Optional
 import os
 from dotenv import load_dotenv
 
-from transform_engine import TransformConfig, TransformEngine  # unified engine
+from ami_helpers.spark_hive_engines.spark_hive_engines.transform_engine import TransformConfig, TransformEngine  # unified engine
 
 load_dotenv()
 

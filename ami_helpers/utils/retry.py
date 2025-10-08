@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Tuple, Type, Optional, Any, Dict
+from typing import Tuple, Type, Optional, Dict
 from tenacity import (
     retry,
     wait_exponential_jitter,
@@ -10,7 +10,7 @@ from tenacity import (
 )
 import traceback
 
-from .alerts.discord_alerts import DiscordAlertConfig, send_discord_alert
+from ami_helpers.alerts.alert_engines.discord_alerts import DiscordAlertConfig, send_discord_alert
 
 def retriable(
     ex_types: Tuple[Type[BaseException], ...],
