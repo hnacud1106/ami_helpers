@@ -27,6 +27,7 @@ kết nối database và hệ thống cảnh báo. Thư viện cung cấp các c
 - [Utilities](docs/utils.md) - Logging và retry mechanisms
 - [Examples](docs/examples.md) - Các ví dụ sử dụng thực tế
 - [Troubleshooting](docs/troubleshooting.md) - Khắc phục sự cố thường gặp
+- [To do update](docs/Updating.md) - Những function triển khai trong tương lai
 
 ### Cài đặt dependencies
 
