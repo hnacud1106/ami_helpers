@@ -2,7 +2,8 @@
 
 ## Tổng quan
 
-AMI Helpers là một thư viện Python được thiết kế để hỗ trợ các tác vụ xử lý dữ liệu quy mô lớn với Apache Spark/Hive, kết nối database và hệ thống cảnh báo. Thư viện cung cấp các công cụ mạnh mẽ và dễ sử dụng cho việc:
+AMI Helpers là một thư viện Python được thiết kế để hỗ trợ các tác vụ xử lý dữ liệu quy mô lớn với Apache Spark/Hive,
+kết nối database và hệ thống cảnh báo. Thư viện cung cấp các công cụ mạnh mẽ và dễ sử dụng cho việc:
 
 - **Xử lý dữ liệu**: Spark/Hive engines với cấu hình linh hoạt
 - **Kết nối database**: PostgreSQL và ClickHouse với connection pooling
@@ -16,6 +17,16 @@ AMI Helpers là một thư viện Python được thiết kế để hỗ trợ 
 - Python 3.8+
 - Java 8+ (cho Apache Spark)
 - Apache Spark 3.0+ (nếu sử dụng Spark engines)
+
+## Tài liệu chi tiết
+
+- [Custom Parameters](docs/custom_parameters.md) - **Các tham số tùy chỉnh của thư viện** ⭐
+- [Database Engines](docs/database_engines.md) - Hướng dẫn kết nối PostgreSQL và ClickHouse
+- [Spark/Hive Engines](docs/spark_hive_engines.md) - Xử lý dữ liệu với Spark và Hive
+- [Alert System](docs/alerts.md) - Hệ thống cảnh báo Discord
+- [Utilities](docs/utils.md) - Logging và retry mechanisms
+- [Examples](docs/examples.md) - Các ví dụ sử dụng thực tế
+- [Troubleshooting](docs/troubleshooting.md) - Khắc phục sự cố thường gặp
 
 ### Cài đặt dependencies
 
@@ -40,11 +51,13 @@ pip install -r ami_helpers/requirements.txt
 ### Cấu hình môi trường
 
 1. Copy file cấu hình mẫu:
+
 ```bash
 cp ami_helpers/.env_sample ami_helpers/.env
 ```
 
 2. Chỉnh sửa file `.env` với thông tin môi trường của bạn:
+
 ```env
 # Spark Configuration
 SPARK_APP_NAME=my_data_processing_app
@@ -82,7 +95,7 @@ from ami_helpers.spark_hive_engines import make_engine
 with make_engine(kind="spark", app_name="my_app") as engine:
     # Đọc dữ liệu từ bảng
     df = engine.read_table("my_database.my_table")
-    
+
     # Thực hiện SQL query
     result = engine.sql("""
         SELECT 
@@ -92,7 +105,7 @@ with make_engine(kind="spark", app_name="my_app") as engine:
         WHERE date_col >= '2024-01-01'
         GROUP BY date_col
     """)
-    
+
     # Ghi kết quả
     engine.write_table(result, "my_database.summary_table", mode="overwrite")
 ```
@@ -155,6 +168,7 @@ discord_config = DiscordAlertConfig(
     environment="production"
 )
 
+
 @retriable_with_discord(
     (ConnectionError, TimeoutError),
     discord_config,
@@ -165,16 +179,6 @@ def risky_database_operation():
     # Code có thể gây lỗi
     pass
 ```
-
-## Tài liệu chi tiết
-
-- [Custom Parameters](docs/custom_parameters.md) - **Các tham số tùy chỉnh của thư viện** ⭐
-- [Database Engines](docs/database_engines.md) - Hướng dẫn kết nối PostgreSQL và ClickHouse
-- [Spark/Hive Engines](docs/spark_hive_engines.md) - Xử lý dữ liệu với Spark và Hive
-- [Alert System](docs/alerts.md) - Hệ thống cảnh báo Discord
-- [Utilities](docs/utils.md) - Logging và retry mechanisms
-- [Examples](docs/examples.md) - Các ví dụ sử dụng thực tế
-- [Troubleshooting](docs/troubleshooting.md) - Khắc phục sự cố thường gặp
 
 ## Hỗ trợ
 
